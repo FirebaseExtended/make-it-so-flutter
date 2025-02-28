@@ -1,14 +1,14 @@
-import 'package:firebase_core/firebase_core.dart';
+// import 'package:firebase_core/firebase_core.dart'; // Vertex
 import 'package:flutter/material.dart';
 
-import 'firebase_options.dart';
+// import 'firebase_options.dart'; // Vertex
 import 'split_or_tabs.dart';
 import 'views/planner_view.dart';
 import 'views/plans_view.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(const MaterialApp(home: HomePage()));
 }
 

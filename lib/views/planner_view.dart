@@ -2,10 +2,11 @@
 
 import 'dart:convert';
 
+// import 'package:firebase_vertexai/firebase_vertexai.dart'; // Vertex
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
-import 'package:google_generative_ai/google_generative_ai.dart' as gemini;
+import 'package:google_generative_ai/google_generative_ai.dart'; // Gemini
 
 import '../buttons/hollow_button.dart';
 import '../buttons/solid_button.dart';
@@ -22,19 +23,7 @@ class PlannerView extends StatefulWidget {
 }
 
 class _PlannerViewState extends State<PlannerView> {
-  // final _provider = VertexProvider(
-  //   model: vertex.FirebaseVertexAI.instance.generativeModel(
-  final _provider = GeminiProvider(
-    model: gemini.GenerativeModel(
-      apiKey:
-          const bool.hasEnvironment('GEMINI_API_KEY')
-              ? const String.fromEnvironment('GEMINI_API_KEY')
-              : throw UnimplementedError('GEMINI_API_KEY is not set'),
-      model: 'gemini-2.0-flash',
-      generationConfig: gemini.GenerationConfig(
-        responseMimeType: 'application/json',
-      ),
-      systemInstruction: gemini.Content.text('''
+  static const _systemInstruction = '''
 Keep task names short; names ideally within 7 words.
 
 Use the following schema in your response:
@@ -43,7 +32,24 @@ Use the following schema in your response:
   "subtasks":"string[]"
 }
 
-The substasks should follow logical order '''),
+The substasks should follow logical order''';
+
+  // Vertex
+  // final _provider = VertexProvider(
+  //   model: FirebaseVertexAI.instance.generativeModel(
+  //     model: 'gemini-2.0-flash',
+  //     generationConfig: GenerationConfig(responseMimeType: 'application/json'),
+  //     systemInstruction: Content.text(_systemInstruction),
+  //   ),
+  // );
+
+  // Gemini
+  final _provider = GeminiProvider(
+    model: GenerativeModel(
+      apiKey: 'TODO: Gemini API Key',
+      model: 'gemini-2.0-flash',
+      generationConfig: GenerationConfig(responseMimeType: 'application/json'),
+      systemInstruction: Content.text(_systemInstruction),
     ),
   );
 

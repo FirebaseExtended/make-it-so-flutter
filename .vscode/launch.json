@@ -1,0 +1,10 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "make it so",
+      "request": "launch",
+      "type": "dart"
+    },
+  ]
+}
