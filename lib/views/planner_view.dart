@@ -1,11 +1,11 @@
-// ignore_for_file: avoid_dynamic_calls
+// ignore_for_file: avoid_dynamic_calls, do_not_use_environment
 
 import 'dart:convert';
 
-import 'package:firebase_vertexai/firebase_vertexai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_ai_toolkit/flutter_ai_toolkit.dart';
+import 'package:google_generative_ai/google_generative_ai.dart' as gemini;
 
 import '../buttons/hollow_button.dart';
 import '../buttons/solid_button.dart';
@@ -22,11 +22,19 @@ class PlannerView extends StatefulWidget {
 }
 
 class _PlannerViewState extends State<PlannerView> {
-  final _provider = VertexProvider(
-    model: FirebaseVertexAI.instance.generativeModel(
+  // final _provider = VertexProvider(
+  //   model: vertex.FirebaseVertexAI.instance.generativeModel(
+  final _provider = GeminiProvider(
+    model: gemini.GenerativeModel(
+      apiKey:
+          const bool.hasEnvironment('GEMINI_API_KEY')
+              ? const String.fromEnvironment('GEMINI_API_KEY')
+              : throw UnimplementedError('GEMINI_API_KEY is not set'),
       model: 'gemini-2.0-flash',
-      generationConfig: GenerationConfig(responseMimeType: 'application/json'),
-      systemInstruction: Content.text('''
+      generationConfig: gemini.GenerationConfig(
+        responseMimeType: 'application/json',
+      ),
+      systemInstruction: gemini.Content.text('''
 Keep task names short; names ideally within 7 words.
 
 Use the following schema in your response:
