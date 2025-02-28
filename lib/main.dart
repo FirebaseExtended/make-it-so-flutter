@@ -18,38 +18,29 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Scaffold(
-        backgroundColor: bgColor,
-        // Header with Gemini icon and title
-        appBar: AppBar(
-          backgroundColor: bgColor,
-          title: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                'assets/Spark_Gradient.png',
-                fit: BoxFit.cover,
-                height: 32,
-              ),
-              const SizedBox(width: 8),
-              const Text(
-                'Planning with the Gemini API',
-                style: TextStyle(
-                  fontSize: 24,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ],
+    backgroundColor: bgColor,
+    // Header with Gemini icon and title
+    appBar: AppBar(
+      backgroundColor: bgColor,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            'assets/Spark_Gradient.png',
+            fit: BoxFit.cover,
+            height: 32,
           ),
-        ),
-        body: SplitOrTabs(
-          tabs: const [
-            Tab(text: 'Planner'),
-            Tab(text: 'Plans'),
-          ],
-          children: [
-            const PlannerView(),
-            PlansView(),
-          ],
-        ),
-      );
+          const SizedBox(width: 8),
+          const Text(
+            'Planning with the Gemini API',
+            style: TextStyle(fontSize: 24, fontWeight: FontWeight.w500),
+          ),
+        ],
+      ),
+    ),
+    body: SplitOrTabs(
+      tabs: const [Tab(text: 'Planner'), Tab(text: 'Plans')],
+      children: [const PlannerView(), PlansView()],
+    ),
+  );
 }

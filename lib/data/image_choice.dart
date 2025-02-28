@@ -1,6 +1,7 @@
-enum ImageChoice { location, room }
+enum ImageChoice {
+  location('assets/location.png'),
+  room('assets/room.png');
 
-String imageAssetPath(ImageChoice choice) => switch (choice) {
-      ImageChoice.location => 'assets/location.png',
-      ImageChoice.room => 'assets/room.png',
-    };
+  const ImageChoice(this.assetPath);
+  final String assetPath;
+}
