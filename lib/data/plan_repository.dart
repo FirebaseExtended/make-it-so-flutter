@@ -15,11 +15,12 @@ class Plan {
   Plan._({required this.title, required this.items});
 
   factory Plan.fromJson(Map<String, dynamic> json) => Plan._(
-        title: json['title'] as String,
-        items: (json['subtasks'] as List<dynamic>)
+    title: json['title'] as String,
+    items:
+        (json['subtasks'] as List<dynamic>)
             .map((item) => PlanItem(title: item as String))
             .toList(),
-      );
+  );
 
   final String title;
   final List<PlanItem> items;

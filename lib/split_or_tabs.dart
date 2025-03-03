@@ -27,34 +27,32 @@ class _SplitOrTabsState extends State<SplitOrTabs>
   }
 
   @override
-  Widget build(BuildContext context) => MediaQuery.of(context).size.width > 1100
-      ? SplitView(
-          viewMode: SplitViewMode.Horizontal,
-          gripColor: Colors.transparent,
-          indicator: const SplitIndicator(
+  Widget build(BuildContext context) =>
+      MediaQuery.of(context).size.width > 1100
+          ? SplitView(
             viewMode: SplitViewMode.Horizontal,
-            color: Colors.grey,
-          ),
-          gripColorActive: Colors.transparent,
-          activeIndicator: const SplitIndicator(
-            viewMode: SplitViewMode.Horizontal,
-            isActive: true,
-            color: Colors.black,
-          ),
-          children: widget.children,
-        )
-      : Column(
-          children: [
-            TabBar(
-              controller: _tabController,
-              tabs: widget.tabs,
+            gripColor: Colors.transparent,
+            indicator: const SplitIndicator(
+              viewMode: SplitViewMode.Horizontal,
+              color: Colors.grey,
             ),
-            Expanded(
-              child: TabBarView(
-                controller: _tabController,
-                children: widget.children,
+            gripColorActive: Colors.transparent,
+            activeIndicator: const SplitIndicator(
+              viewMode: SplitViewMode.Horizontal,
+              isActive: true,
+              color: Colors.black,
+            ),
+            children: widget.children,
+          )
+          : Column(
+            children: [
+              TabBar(controller: _tabController, tabs: widget.tabs),
+              Expanded(
+                child: TabBarView(
+                  controller: _tabController,
+                  children: widget.children,
+                ),
               ),
-            ),
-          ],
-        );
+            ],
+          );
 }

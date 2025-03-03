@@ -16,34 +16,31 @@ class ImageChoiceView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Stack(
-        children: [
-          GestureDetector(
-            onTap: () => onChanged(choice),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(24),
-              child: Image.asset(
-                imageAssetPath(choice),
-                fit: BoxFit.cover,
-              ),
-            ),
+    children: [
+      GestureDetector(
+        onTap: () => onChanged(choice),
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(24),
+          child: Image.asset(choice.assetPath, fit: BoxFit.cover),
+        ),
+      ),
+      Positioned(
+        top: 24,
+        left: 24,
+        child: DecoratedBox(
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
           ),
-          Positioned(
-            top: 24,
-            left: 24,
-            child: DecoratedBox(
-              decoration: const BoxDecoration(
-                color: Colors.white,
-                shape: BoxShape.circle,
-              ),
-              child: Checkbox(
-                value: choice == groupChoice,
-                onChanged: (value) => onChanged(choice),
-                fillColor: WidgetStateProperty.all(Colors.white),
-                checkColor: Colors.blue[900],
-                side: BorderSide.none,
-              ),
-            ),
+          child: Checkbox(
+            value: choice == groupChoice,
+            onChanged: (value) => onChanged(choice),
+            fillColor: WidgetStateProperty.all(Colors.white),
+            checkColor: Colors.blue[900],
+            side: BorderSide.none,
           ),
-        ],
-      );
+        ),
+      ),
+    ],
+  );
 }
